@@ -1,0 +1,40 @@
+/**
+* Copyright (c) 2009-2017 All Rights Reserved.
+*/
+package ${serviceImplPath};
+
+import ${modelPath}.${className};
+import ${mapperPath}.${className}Mapper;
+import ${servicePath}.${className}Service;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+
+/**
+* @author CodeMaker
+* @version $Id: ${className}Service.java,v 0.1 2017-02-13 下午5:55
+*          CodeMaker Exp $$
+*/
+@Service("${lowerClassName}Service")
+public class ${className}ServiceImpl implements ${className}Service {
+
+    @Resource
+    private ${className}Mapper ${lowerClassName}Mapper;
+
+    @Override
+    public Integer add(${className} ${lowerClassName}){
+        this.${lowerClassName}Mapper.insert(${lowerClassName});
+        return ${lowerClassName}.getId();
+    }
+
+    @Override
+    public void update(${className} ${lowerClassName}){
+        this.${lowerClassName}Mapper.update(${lowerClassName});
+    }
+
+    @Override
+    public ${className} one(int ${lowerClassName}Id){
+        return this.${lowerClassName}Mapper.one(${lowerClassName}Id);
+    }
+
+}

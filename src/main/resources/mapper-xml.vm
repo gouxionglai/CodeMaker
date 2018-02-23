@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="${mapperPath}.${className}Mapper">
+
+    <insert id="insert" parameterType="${modelPath}.${className}" useGeneratedKeys="true"
+            keyProperty="pojo.id">
+        INSERT INTO ${tableName}
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        #foreach( $table in $model.models)
+            <if test="pojo.${table.lowerCase} != null">${table.lowerCase},</if>
+        #end
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        #foreach( $table in $model.models)
+            <if test="pojo.${table.lowerCase} != null">#{pojo.${table.lowerCase}},</if>
+        #end
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="${modelPath}.${className}">
+        UPDATE ${tableName}
+        <trim prefix="set" suffixOverrides=",">
+        #foreach( $table in $model.models)
+            <if test="pojo.${table.lowerCase} != null">${table.lowerCase} = #{pojo.${table.lowerCase}},</if>
+        #end
+        </trim>
+        WHERE id = #{pojo.id,jdbcType=INTEGER}
+    </update>
+
+    <select id="one" resultType="${modelPath}.${className}">
+        SELECT
+        *
+        FROM
+        ${tableName}
+        WHERE id = #{id}
+    </select>
+
+</mapper>

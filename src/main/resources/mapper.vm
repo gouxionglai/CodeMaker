@@ -1,0 +1,22 @@
+/**
+* Copyright (c) 2009-2017 All Rights Reserved.
+*/
+package ${mapperPath};
+
+import ${modelPath}.${className};
+import org.apache.ibatis.annotations.Param;
+
+/**
+* @author CodeMaker
+* @version $Id: ${className}Mapper.java,v 0.1 2017-02-13 下午5:55
+*          CodeMaker Exp $$
+*/
+public interface ${className}Mapper {
+
+    void insert(@Param("pojo") ${className} pojo);
+
+    void update(@Param("pojo") ${className} pojo);
+
+    ${className} one(@Param("id") Integer id);
+
+}

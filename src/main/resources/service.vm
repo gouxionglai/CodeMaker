@@ -1,0 +1,21 @@
+/**
+* Copyright (c) 2009-2017 All Rights Reserved.
+*/
+package ${servicePath};
+
+import ${modelPath}.${className};
+
+/**
+* @author CodeMaker
+* @version $Id: ${className}Service.java,v 0.1 2017-02-13 下午5:55
+*          CodeMaker Exp $$
+*/
+public interface ${className}Service {
+
+    Integer add(${className} ${lowerClassName});
+
+    ${className} one(int ${lowerClassName}Id);
+
+    void update(${className} ${lowerClassName});
+
+}

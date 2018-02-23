@@ -1,0 +1,81 @@
+/**
+* Copyright (c) 2009-2017 All Rights Reserved.
+*/
+package ${controllerPath};
+
+import org.springframework.web.bind.annotation.*;
+import javax.annotation.Resource;
+import ${modelPath}.${className};
+import ${servicePath}.${className}Service;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+#foreach( $package in $model.packages)
+import ${package};
+#end
+
+/**
+* @author CodeMaker
+* @version \: ${className}Controller.java,v 0.1 2017-02-16 13:37
+*          用来存放${lowerClassName}相关的后台接口
+*/
+@RestController
+@RequestMapping("/${lowerClassName}")
+public class ${className}Controller {
+
+    private Logger logger = LoggerFactory.getLogger(${className}Controller.class);
+
+    @Resource
+    private ${className}Service ${lowerClassName}Service;
+#set($size = $model.models.size())
+    @RequestMapping("add")
+    public String add${className}(#foreach( $table in $model.models)
+#if($velocityCount == $size)
+@RequestParam(value = "${table.lowerCase}", required = false) ${table.javaType} ${table.lowerCase}
+#end
+#if($velocityCount != $size)
+@RequestParam(value = "${table.lowerCase}", required = false) ${table.javaType} ${table.lowerCase},
+#end
+                                        #end
+    ) {
+        try {
+            ${className} ${lowerClassName} = new ${className}();
+            #foreach( $table in $model.models)
+${lowerClassName}.set${table.capitalCase}(${table.lowerCase});
+            #end
+this.${lowerClassName}Service.add(${lowerClassName});
+            return "添加成功！";
+        } catch (Exception e) {
+            logger.error("add ${lowerClassName} error !", e);
+            return "添加失败！";
+        }
+    }
+
+    @RequestMapping("update")
+    public String update${className}(#foreach( $table in $model.models)
+#if($velocityCount == $size)
+@RequestParam(value = "${table.lowerCase}", required = false) ${table.javaType} ${table.lowerCase}
+#end
+#if($velocityCount != $size)
+@RequestParam(value = "${table.lowerCase}", required = false) ${table.javaType} ${table.lowerCase},
+#end
+                                            #end
+    ) {
+        try {
+            ${className} ${lowerClassName} = new ${className}();
+            #foreach( $table in $model.models)
+${lowerClassName}.set${table.capitalCase}(${table.lowerCase});
+            #end
+this.${lowerClassName}Service.update(${lowerClassName});
+            return "修改成功！";
+        } catch (Exception e) {
+            logger.error("update ${lowerClassName} error !", e);
+            return "修改失败！";
+        }
+    }
+
+    @RequestMapping("one")
+    public ${className} getOne(@RequestParam(value = "id")Integer id){
+        return this.${lowerClassName}Service.one(id);
+    }
+}

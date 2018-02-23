@@ -1,0 +1,32 @@
+/**
+* Copyright (c) 2009-2017 All Rights Reserved.
+*/
+package ${modelPath};
+
+#foreach( $package in $model.packages)
+import ${package};
+#end
+
+/**
+* @author CodeMaker
+* @version $Id: ${className}.java,v 0.1 2017-02-13 下午5:55
+*          CodeMaker Exp $$
+*/
+public class ${className} {
+
+#foreach( $table in $model.models)
+    /** ${table.note}*/
+    private ${table.javaType} ${table.lowerCase};
+#end
+#foreach( $table in $model.models)
+
+    public ${table.javaType} get${table.capitalCase}() {
+        return ${table.lowerCase};
+    }
+
+    public void set${table.capitalCase}(${table.javaType} ${table.lowerCase}) {
+        this.${table.lowerCase} = ${table.lowerCase};
+    }
+#end
+
+}
