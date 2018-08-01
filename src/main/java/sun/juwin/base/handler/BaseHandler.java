@@ -135,11 +135,21 @@ public class BaseHandler {
      * 生成最终项目文件的去向
      */
     private void setTargetPath(String baseProPath) {
-        targetModelPath = baseProPath + "/" + pointModelPath.replace(".", "/");
-        targetMapperPath = baseProPath + "/" + pointMapperPath.replace(".", "/");
-        targetServicePath = baseProPath + "/" + pointServicePath.replace(".", "/");
-        targetServiceImplPath = baseProPath + "/" + pointServiceImplPath.replace(".", "/");
-        targetControllerPath = baseProPath + "/" + pointControllerPath.replace(".", "/");
+        if(!Strings.isNullOrEmpty(pointModelPath)){
+            targetModelPath = baseProPath + "/" + pointModelPath.replace(".", "/");
+        }
+        if(!Strings.isNullOrEmpty(pointMapperPath)){
+            targetMapperPath = baseProPath + "/" + pointMapperPath.replace(".", "/");
+        }
+        if(!Strings.isNullOrEmpty(pointServicePath)){
+            targetServicePath = baseProPath + "/" + pointServicePath.replace(".", "/");
+        }
+        if(!Strings.isNullOrEmpty(pointServiceImplPath)){
+            targetServiceImplPath = baseProPath + "/" + pointServiceImplPath.replace(".", "/");
+        }
+        if(!Strings.isNullOrEmpty(pointControllerPath)){
+            targetControllerPath = baseProPath + "/" + pointControllerPath.replace(".", "/");
+        }
     }
 
     /**

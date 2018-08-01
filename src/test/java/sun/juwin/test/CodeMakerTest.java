@@ -36,6 +36,7 @@ public class CodeMakerTest {
         BaseHandler baseHandler = new BaseHandler();
         /***
          * 由于每个项目的命名规则不一致，因此各层级结构的路径允许自定义
+         * 可以不传某一分层的路径参数，若不传，则不会生成该层对应的代码
          */
         baseHandler.setPointPath(new PathModel()
                 .setControllerPath("sun.juwin.codemaker.controller")

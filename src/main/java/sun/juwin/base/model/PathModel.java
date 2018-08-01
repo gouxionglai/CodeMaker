@@ -1,10 +1,8 @@
 package sun.juwin.base.model;
 
 /**
- *
  * @author Juwin.S
- * @version \: PathModel.java,v 0.1 2018-02-09 19:14 
- *
+ * @version \: PathModel.java,v 0.1 2018-02-09 19:14
  */
 public class PathModel {
 
@@ -20,15 +18,13 @@ public class PathModel {
 
     private String controllerPath;
 
-    private String className;
 
-
-    public static PathModel PathBuilder(){
+    public static PathModel PathBuilder() {
         return new PathModel();
     }
 
     public String getModelPath() {
-        return String.format(modelPath, className);
+        return modelPath;
     }
 
     public PathModel setModelPath(String modelPath) {
@@ -37,7 +33,7 @@ public class PathModel {
     }
 
     public String getDaoPath() {
-        return String.format(daoPath, className);
+        return daoPath;
     }
 
     public PathModel setDaoPath(String daoPath) {
@@ -46,7 +42,7 @@ public class PathModel {
     }
 
     public String getMapperPath() {
-        return String.format(mapperPath, className);
+        return mapperPath;
     }
 
     public PathModel setMapperPath(String mapperPath) {
@@ -55,7 +51,7 @@ public class PathModel {
     }
 
     public String getServicePath() {
-        return String.format(servicePath, className);
+        return servicePath;
     }
 
     public PathModel setServicePath(String servicePath) {
@@ -64,7 +60,7 @@ public class PathModel {
     }
 
     public String getServiceImplPath() {
-        return String.format(serviceImplPath, className);
+        return serviceImplPath;
     }
 
     public PathModel setServiceImplPath(String serviceImplPath) {
@@ -73,16 +69,11 @@ public class PathModel {
     }
 
     public String getControllerPath() {
-        return String.format(controllerPath, className);
+        return controllerPath;
     }
 
     public PathModel setControllerPath(String controllerPath) {
         this.controllerPath = controllerPath;
-        return this;
-    }
-
-    public PathModel setClassName(String className) {
-        this.className = className.toLowerCase();
         return this;
     }
 }
