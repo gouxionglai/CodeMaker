@@ -28,9 +28,10 @@ public class CodeMakerTest {
         /***
          * 以下定义好自己的数据库url、数据库用户名、数据库密码
          */
-        JdbcModel.url = "jdbc:mysql://xxx.xx.xx.xxx:3306/xxxx";
+        JdbcModel.url = "jdbc:mysql://xxx.xx.xx.xxx:3306/数据库名";
         JdbcModel.user = "xxxxx";
         JdbcModel.pwd = "xxxxx";
+        JdbcModel.schema = "数据库名";
 
         CoreTask coreTask = new CoreTask();
         /***
