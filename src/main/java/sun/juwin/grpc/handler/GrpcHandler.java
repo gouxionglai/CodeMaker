@@ -1,7 +1,3 @@
-/**
- * Bilibili.com Inc.
- * Copyright (c) 2009-2018 All Rights Reserved.
- */
 package sun.juwin.grpc.handler;
 
 /**
