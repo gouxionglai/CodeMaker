@@ -3,6 +3,7 @@
  */
 package sun.juwin.db;
 
+import sun.juwin.model.JdbcModel;
 import sun.juwin.model.TableModel;
 import sun.juwin.model.TaskModel;
 
@@ -54,7 +55,7 @@ public class Table {
     public List<TableModel> getAllProperty(String tableName) throws Exception{
         List<TableModel> tableModels = new ArrayList<TableModel>();
         Statement statement = conn.createStatement();
-        ResultSet resultSet = statement.executeQuery("select `column_name`, data_type, column_comment from information_schema.columns where `table_name` = '"+tableName+"'");
+        ResultSet resultSet = statement.executeQuery("select `column_name`, data_type, column_comment from information_schema.columns where `table_name` = '"+tableName+"' AND TABLE_SCHEMA = '"+JdbcModel.schema +"'");
         while (resultSet.next()){
             TableModel tableModel = new TableModel();
             String pro = resultSet.getString("column_name");

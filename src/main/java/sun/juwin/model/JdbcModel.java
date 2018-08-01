@@ -14,4 +14,6 @@ public class JdbcModel {
 
     public static String pwd;
 
+    public static String schema;
+
 }
