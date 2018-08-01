@@ -1,4 +1,4 @@
-package sun.juwin.model;
+package sun.juwin.base.model;
 
 /**
  *

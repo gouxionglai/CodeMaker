@@ -4,9 +4,9 @@
 package sun.juwin.test;
 
 import org.junit.Test;
-import sun.juwin.core.CoreTask;
-import sun.juwin.model.JdbcModel;
-import sun.juwin.model.PathModel;
+import sun.juwin.base.handler.BaseHandler;
+import sun.juwin.base.model.JdbcModel;
+import sun.juwin.base.model.PathModel;
 
 /**
  *
@@ -33,11 +33,11 @@ public class CodeMakerTest {
         JdbcModel.pwd = "xxxxx";
         JdbcModel.schema = "数据库名";
 
-        CoreTask coreTask = new CoreTask();
+        BaseHandler baseHandler = new BaseHandler();
         /***
          * 由于每个项目的命名规则不一致，因此各层级结构的路径允许自定义
          */
-        coreTask.setPointPath(new PathModel()
+        baseHandler.setPointPath(new PathModel()
                 .setControllerPath("sun.juwin.codemaker.controller")
                 .setServicePath("sun.juwin.codemaker.service")
                 .setServiceImplPath("sun.juwin.codemaker.service.impl")
@@ -50,7 +50,7 @@ public class CodeMakerTest {
          * 参数2：数据库表名
          * 参数3：该数据库表生成后期望的实体类命名
          */
-        coreTask.coreTask("E:\\new_api\\Thread-Lock\\src\\main\\java", "r_record_season", "RecordSeason");
+        baseHandler.baseHandler("E:\\new_api\\Thread-Lock\\src\\main\\java", "r_record_season", "RecordSeason");
     }
 
 }

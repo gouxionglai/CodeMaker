@@ -2,15 +2,15 @@
 
  * Copyright (c) 2009-2017 All Rights Reserved.
  */
-package sun.juwin.core;
+package sun.juwin.base.handler;
 
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
-import sun.juwin.db.Table;
-import sun.juwin.model.PathModel;
-import sun.juwin.model.TaskModel;
+import sun.juwin.base.db.Table;
+import sun.juwin.base.model.PathModel;
+import sun.juwin.base.model.TaskModel;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,7 +23,7 @@ import java.util.Properties;
  * @version \: CoreTask.java,v 0.1 2017-03-01 18:04 
  * 处理中心
  */
-public class CoreTask {
+public class BaseHandler {
 
     public static final String TEMPLATE_PATH = "CodeMaker/src/main/resources";
     public static final String START_WORD = "file:/";
@@ -41,8 +41,8 @@ public class CoreTask {
     private String targetServiceImplPath;
     private String targetControllerPath;
 
-    public void coreTask(String baseProPath, String tableName, String className) throws Exception{
-        String path = CoreTask.class.getResource("").toString();
+    public void baseHandler(String baseProPath, String tableName, String className) throws Exception{
+        String path = BaseHandler.class.getResource("").toString();
         //取得模板根目录
         String temPath = path.substring(path.indexOf(START_WORD)+6, path.indexOf(PRO_NAME))+TEMPLATE_PATH;
         //Velocity引擎及初始化相关

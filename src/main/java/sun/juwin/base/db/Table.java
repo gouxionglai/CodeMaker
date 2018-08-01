@@ -1,16 +1,16 @@
 /**
  * Copyright (c) 2009-2017 All Rights Reserved.
  */
-package sun.juwin.db;
-
-import sun.juwin.model.JdbcModel;
-import sun.juwin.model.TableModel;
-import sun.juwin.model.TaskModel;
+package sun.juwin.base.db;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.*;
+
+import sun.juwin.base.model.JdbcModel;
+import sun.juwin.base.model.TableModel;
+import sun.juwin.base.model.TaskModel;
 
 /**
  *

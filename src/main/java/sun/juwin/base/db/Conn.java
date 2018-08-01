@@ -1,9 +1,9 @@
 /**
  * Copyright (c) 2009-2017 All Rights Reserved.
  */
-package sun.juwin.db;
+package sun.juwin.base.db;
 
-import sun.juwin.model.JdbcModel;
+import sun.juwin.base.model.JdbcModel;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
