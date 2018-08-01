@@ -25,16 +25,18 @@ import java.util.Properties;
  */
 public class BaseHandler {
 
-    public static final String TEMPLATE_PATH = "CodeMaker/src/main/resources";
-    public static final String START_WORD = "file:/";
-    public static final String PRO_NAME = "CodeMaker";
+    private static final String TEMPLATE_PATH = "CodeMaker/src/main/resources";
+    private static final String START_WORD = "file:/";
+    private static final String PRO_NAME = "CodeMaker";
 
+    //java描述路径
     private String pointModelPath;
     private String pointMapperPath;
     private String pointServicePath;
     private String pointServiceImplPath;
     private String pointControllerPath;
 
+    //文件绝对路径
     private String targetModelPath;
     private String targetMapperPath;
     private String targetServicePath;
@@ -51,15 +53,15 @@ public class BaseHandler {
         p.put(Velocity.FILE_RESOURCE_LOADER_PATH, temPath);
         ve.init(p);
         //引入model层模板
-        Template modelVm = ve.getTemplate("model.vm", "utf-8");
+        Template modelVm = ve.getTemplate("base/model.vm", "utf-8");
         //引入dao层相关的模板
-        Template mapperVm = ve.getTemplate("mapper.vm", "utf-8");
-        Template mapperXmlVm = ve.getTemplate("mapper-xml.vm", "utf-8");
+        Template mapperVm = ve.getTemplate("base/mapper.vm", "utf-8");
+        Template mapperXmlVm = ve.getTemplate("base/mapper-xml.vm", "utf-8");
         //引入service层相关模板
-        Template serviceVm = ve.getTemplate("service.vm", "utf-8");
-        Template serviceImplVm = ve.getTemplate("service-impl.vm", "utf-8");
+        Template serviceVm = ve.getTemplate("base/service.vm", "utf-8");
+        Template serviceImplVm = ve.getTemplate("base/service-impl.vm", "utf-8");
         //引入controller层模板
-        Template controllerVm = ve.getTemplate("controller.vm", "utf-8");
+        Template controllerVm = ve.getTemplate("base/controller.vm", "utf-8");
         VelocityContext context = new VelocityContext();
         Table table = new Table();
         TaskModel model = table.getTaskModel(tableName);
