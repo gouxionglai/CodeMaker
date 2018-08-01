@@ -8,7 +8,7 @@ import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
-import sun.juwin.base.db.Table;
+import sun.juwin.base.dao.Table;
 import sun.juwin.base.model.PathModel;
 import sun.juwin.base.model.TaskModel;
 

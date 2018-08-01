@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2009-2017 All Rights Reserved.
  */
-package sun.juwin.base.db;
+package sun.juwin.base.dao;
 
 import sun.juwin.base.model.JdbcModel;
 
