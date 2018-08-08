@@ -76,7 +76,9 @@ public class BaseCodePath {
 
     public BaseCodePath setPointModelPath(String pointModelPath) {
         this.pointModelPath = pointModelPath;
-        targetModelPath = baseProPath + "/" + pointModelPath.replace(".", "/");
+        if(!Strings.isNullOrEmpty(pointModelPath)){
+            targetModelPath = String.format("%s/%s", baseProPath, pointModelPath.replace(".", "/"));
+        }
         return this;
     }
 
@@ -86,7 +88,9 @@ public class BaseCodePath {
 
     public BaseCodePath setPointMapperPath(String pointMapperPath) {
         this.pointMapperPath = pointMapperPath;
-        targetMapperPath = baseProPath + "/" + pointMapperPath.replace(".", "/");
+        if(!Strings.isNullOrEmpty(pointMapperPath)){
+            targetMapperPath = String.format("%s/%s", baseProPath, pointMapperPath.replace(".", "/"));
+        }
         return this;
     }
 
@@ -96,7 +100,9 @@ public class BaseCodePath {
 
     public BaseCodePath setPointServicePath(String pointServicePath) {
         this.pointServicePath = pointServicePath;
-        targetServicePath = baseProPath + "/" + pointServicePath.replace(".", "/");
+        if(!Strings.isNullOrEmpty(pointServicePath)){
+            targetServicePath = String.format("%s/%s", baseProPath, pointServicePath.replace(".", "/"));
+        }
         return this;
     }
 
@@ -106,7 +112,9 @@ public class BaseCodePath {
 
     public BaseCodePath setPointServiceImplPath(String pointServiceImplPath) {
         this.pointServiceImplPath = pointServiceImplPath;
-        targetServiceImplPath = baseProPath + "/" + pointServiceImplPath.replace(".", "/");
+        if(!Strings.isNullOrEmpty(pointServiceImplPath)){
+            targetServiceImplPath = String.format("%s/%s", baseProPath, pointServiceImplPath.replace(".", "/"));
+        }
         return this;
     }
 
@@ -116,7 +124,9 @@ public class BaseCodePath {
 
     public BaseCodePath setPointControllerPath(String pointControllerPath) {
         this.pointControllerPath = pointControllerPath;
-        targetControllerPath = baseProPath + "/" + pointControllerPath.replace(".", "/");
+        if(!Strings.isNullOrEmpty(pointControllerPath)){
+            targetControllerPath = String.format("%s/%s", baseProPath, pointControllerPath.replace(".", "/"));
+        }
         return this;
     }
 
