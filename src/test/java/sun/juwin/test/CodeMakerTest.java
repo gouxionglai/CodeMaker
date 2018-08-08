@@ -4,7 +4,8 @@
 package sun.juwin.test;
 
 import org.junit.Test;
-import sun.juwin.baseproject.BaseCodePath;
+import sun.juwin.baseproject.model.BaseCodePath;
+import sun.juwin.baseproject.task.BaseProjectMaker;
 import sun.juwin.core.CodeMaker;
 
 /**
@@ -29,7 +30,7 @@ public class CodeMakerTest {
                 .setPointServiceImplPath("sun.juwin.service.impl")
                 .setPointControllerPath("sun.juwin.controller");
 
-        CodeMaker.buildMaker().makeBaseProjectCode(codePath).make();
+        BaseProjectMaker.build().makeBaseProjectCode(codePath).make();
     }
 
 }

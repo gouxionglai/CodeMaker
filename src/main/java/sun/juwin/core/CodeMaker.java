@@ -4,12 +4,9 @@
  */
 package sun.juwin.core;
 
-import com.google.common.base.Strings;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
-import sun.juwin.baseproject.BaseCodePath;
-import sun.juwin.baseproject.InitHandlers;
 import sun.juwin.exception.BaseCodeMakerException;
 import sun.juwin.core.handlers.*;
 import sun.juwin.constant.CodeMakerConstant;
@@ -46,23 +43,6 @@ public class CodeMaker {
 
     public static CodeMaker buildMaker() {
         return new CodeMaker();
-    }
-
-    public CodeMaker makeBaseProjectCode(BaseCodePath codePath, String basePath) throws BaseCodeMakerException {
-        codePath.setPointModelPath(String.format("%s.model", basePath))
-                .setPointMapperPath(String.format("%s.mapper", basePath))
-                .setPointServicePath(String.format("%s.service", basePath))
-                .setPointServiceImplPath(String.format("%s.service.impl", basePath))
-                .setPointControllerPath(String.format("%s.controller", basePath));
-        return makeBaseProjectCode(codePath);
-    }
-
-    public CodeMaker makeBaseProjectCode(BaseCodePath codePath) throws BaseCodeMakerException {
-        if (codePath == null || Strings.isNullOrEmpty(codePath.getBaseProPath())) {
-            throw new BaseCodeMakerException("您目标项目路径不可为空！");
-        }
-        InitHandlers.initHandlers(codePath, this);
-        return this;
     }
 
     public void setHandlers(Map<String, Object> vmParam, CodeMakerHandler handler) throws BaseCodeMakerException {

@@ -2,9 +2,10 @@
  * Bilibili.com Inc.
  * Copyright (c) 2009-2018 All Rights Reserved.
  */
-package sun.juwin.baseproject;
+package sun.juwin.baseproject.task;
 
 import com.google.common.base.Strings;
+import sun.juwin.baseproject.model.BaseCodePath;
 import sun.juwin.core.CodeMaker;
 import sun.juwin.exception.BaseCodeMakerException;
 import sun.juwin.core.handlers.BaseHandler;
