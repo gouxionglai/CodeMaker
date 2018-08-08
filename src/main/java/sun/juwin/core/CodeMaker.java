@@ -35,6 +35,13 @@ public class CodeMaker {
     private List<CodeMakerHandler> handlers = new ArrayList<CodeMakerHandler>();
 
     private CodeMaker() {
+        String path = CodeMaker.class.getResource("").toString();
+        String temPath = path.substring(path.indexOf(CodeMakerConstant.START_WORD) + 6,
+                path.indexOf(CodeMakerConstant.PRO_NAME)) + CodeMakerConstant.TEMPLATE_PATH;
+        this.ve = new VelocityEngine();
+        Properties p = new Properties();
+        p.put(Velocity.FILE_RESOURCE_LOADER_PATH, temPath);
+        ve.init(p);
     }
 
     public static CodeMaker buildMaker() {
@@ -51,23 +58,10 @@ public class CodeMaker {
     }
 
     public CodeMaker makeBaseProjectCode(BaseCodePath codePath) throws BaseCodeMakerException {
-
         if (codePath == null || Strings.isNullOrEmpty(codePath.getBaseProPath())) {
             throw new BaseCodeMakerException("您目标项目路径不可为空！");
         }
-
-        String path = CodeMaker.class.getResource("").toString();
-
-        String temPath = path.substring(path.indexOf(CodeMakerConstant.START_WORD) + 6,
-                path.indexOf(CodeMakerConstant.PRO_NAME)) + CodeMakerConstant.TEMPLATE_PATH;
-
-        this.ve = new VelocityEngine();
-        Properties p = new Properties();
-        p.put(Velocity.FILE_RESOURCE_LOADER_PATH, temPath);
-        ve.init(p);
-
         InitHandlers.initHandlers(codePath, this);
-
         return this;
     }
 
