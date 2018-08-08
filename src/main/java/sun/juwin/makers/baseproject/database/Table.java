@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2009-2017 All Rights Reserved.
  */
-package sun.juwin.baseproject.database;
+package sun.juwin.makers.baseproject.database;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.*;
 
-import sun.juwin.baseproject.model.TableModel;
-import sun.juwin.baseproject.model.TaskModel;
+import sun.juwin.makers.baseproject.model.TableModel;
+import sun.juwin.makers.baseproject.model.TaskModel;
 
 /**
  * @author Juwin.S

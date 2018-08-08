@@ -2,9 +2,9 @@
  * Bilibili.com Inc.
  * Copyright (c) 2009-2018 All Rights Reserved.
  */
-package sun.juwin.baseproject.model;
+package sun.juwin.makers.baseproject.model;
 
-import sun.juwin.baseproject.database.JdbcModel;
+import sun.juwin.makers.baseproject.database.JdbcModel;
 
 /**
  * @author sunqinwen

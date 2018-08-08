@@ -4,9 +4,8 @@
 package sun.juwin.test;
 
 import org.junit.Test;
-import sun.juwin.baseproject.model.BaseCodePath;
-import sun.juwin.baseproject.task.BaseProjectMaker;
-import sun.juwin.core.CodeMaker;
+import sun.juwin.makers.baseproject.model.BaseCodePath;
+import sun.juwin.makers.baseproject.task.BaseProjectMaker;
 
 /**
  * @author Juwin.S

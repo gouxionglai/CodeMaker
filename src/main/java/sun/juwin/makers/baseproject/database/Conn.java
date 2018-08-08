@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2009-2017 All Rights Reserved.
  */
-package sun.juwin.baseproject.database;
+package sun.juwin.makers.baseproject.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

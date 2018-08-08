@@ -2,16 +2,16 @@
  * Bilibili.com Inc.
  * Copyright (c) 2009-2018 All Rights Reserved.
  */
-package sun.juwin.baseproject.task;
+package sun.juwin.makers.baseproject.task;
 
 import com.google.common.base.Strings;
-import sun.juwin.baseproject.model.BaseCodePath;
+import sun.juwin.makers.baseproject.model.BaseCodePath;
 import sun.juwin.core.CodeMaker;
 import sun.juwin.exception.BaseCodeMakerException;
 import sun.juwin.core.handlers.BaseHandler;
-import sun.juwin.baseproject.model.TaskModel;
+import sun.juwin.makers.baseproject.model.TaskModel;
 import sun.juwin.constant.CodeMakerConstant;
-import sun.juwin.baseproject.database.Table;
+import sun.juwin.makers.baseproject.database.Table;
 
 import java.util.HashMap;
 import java.util.Map;

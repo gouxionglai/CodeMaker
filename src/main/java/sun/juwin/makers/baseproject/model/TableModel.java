@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2009-2017 All Rights Reserved.
  */
-package sun.juwin.baseproject.model;
+package sun.juwin.makers.baseproject.model;
 
 /**
  * @author Juwin.S

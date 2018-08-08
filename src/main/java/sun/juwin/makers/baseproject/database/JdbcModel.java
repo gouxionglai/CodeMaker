@@ -1,4 +1,4 @@
-package sun.juwin.baseproject.database;
+package sun.juwin.makers.baseproject.database;
 
 /**
  * @author Juwin.S
