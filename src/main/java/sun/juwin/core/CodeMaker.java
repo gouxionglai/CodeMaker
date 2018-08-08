@@ -2,16 +2,16 @@
  * Bilibili.com Inc.
  * Copyright (c) 2009-2018 All Rights Reserved.
  */
-package sun.juwin.base.core;
+package sun.juwin.core;
 
 import com.google.common.base.Strings;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
-import sun.juwin.base.dao.Table;
-import sun.juwin.base.exception.BaseCodeMakerException;
-import sun.juwin.base.handlers.*;
-import sun.juwin.base.model.TaskModel;
+import sun.juwin.baseproject.BaseCodePath;
+import sun.juwin.baseproject.InitPath;
+import sun.juwin.exception.BaseCodeMakerException;
+import sun.juwin.core.handlers.*;
 import sun.juwin.constant.CodeMakerConstant;
 
 import java.util.*;
@@ -30,27 +30,20 @@ public class CodeMaker {
 
     private VelocityContext context = new VelocityContext();
 
-    private String tableName;
-
-    private String modelName;
-
-    private BaseCodePath codePath;
-
     private List<Map<String, Object>> filePath = new ArrayList<>();
 
     private List<CodeMakerHandler> handlers = new ArrayList<CodeMakerHandler>();
 
-    public CodeMaker buildMaker(BaseCodePath codePath) throws BaseCodeMakerException{
+    public CodeMaker buildBaseProjectMaker(BaseCodePath codePath) throws BaseCodeMakerException{
 
         if(codePath == null || Strings.isNullOrEmpty(codePath.getBaseProPath())){
             throw new BaseCodeMakerException("您目标项目路径不可为空！");
         }
 
-        String path = sun.juwin.base.handler.BaseHandler.class.getResource("").toString();
+        String path = CodeMaker.class.getResource("").toString();
 
-        String temPath = path.substring(path.indexOf(CodeMakerConstant.START_WORD)
-                + 6, path.indexOf(CodeMakerConstant.PRO_NAME))
-                + CodeMakerConstant.TEMPLATE_PATH;
+        String temPath = path.substring(path.indexOf(CodeMakerConstant.START_WORD) + 6,
+                path.indexOf(CodeMakerConstant.PRO_NAME)) + CodeMakerConstant.TEMPLATE_PATH;
 
         this.ve = new VelocityEngine();
         Properties p = new Properties();
@@ -85,7 +78,10 @@ public class CodeMaker {
 
     public void make() throws Exception{
         int cursor = getNextCursor();
-        handlers.get(cursor).makeCode(ve, context, "", "","");
+        handlers.get(cursor).makeCode(ve, context,
+                String.valueOf(filePath.get(cursor).get(CodeMakerConstant.TARGET_VM_PATH)),
+                String.valueOf(filePath.get(cursor).get(CodeMakerConstant.TARGET_FILE_PATH)),
+                String.valueOf(filePath.get(cursor).get(CodeMakerConstant.TARGET_FILE_NAME)));
     }
 
     private int getNextCursor() throws Exception {

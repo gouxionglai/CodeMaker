@@ -2,7 +2,9 @@
  * Bilibili.com Inc.
  * Copyright (c) 2009-2018 All Rights Reserved.
  */
-package sun.juwin.base.core;
+package sun.juwin.baseproject;
+
+import sun.juwin.baseproject.database.JdbcModel;
 
 /**
  * @author sunqinwen
@@ -38,18 +40,12 @@ public class BaseCodePath {
 
     private String targetControllerPath;
 
-    // 文件名
-    private String targetModelName;
-
-    private String targetMapperName;
-
-    private String targetXmlName;
-
-    private String targetServiceName;
-
-    private String targetServiceImplName;
-
-    private String targetControllerName;
+    public BaseCodePath(String mysqlUrl, String mysqlUser, String mysqlPwd, String schema) {
+        JdbcModel.url = mysqlUrl;
+        JdbcModel.user = mysqlUser;
+        JdbcModel.pwd = mysqlPwd;
+        JdbcModel.schema = schema;
+    }
 
     public String getBaseProPath() {
         return baseProPath;

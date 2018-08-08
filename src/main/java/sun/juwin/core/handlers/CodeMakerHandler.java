@@ -2,7 +2,7 @@
  * Bilibili.com Inc.
  * Copyright (c) 2009-2018 All Rights Reserved.
  */
-package sun.juwin.base.handlers;
+package sun.juwin.core.handlers;
 
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;

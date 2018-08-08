@@ -2,7 +2,7 @@
  * Bilibili.com Inc.
  * Copyright (c) 2009-2018 All Rights Reserved.
  */
-package sun.juwin.base.exception;
+package sun.juwin.exception;
 
 /**
  *

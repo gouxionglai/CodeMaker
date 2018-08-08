@@ -1,4 +1,4 @@
-package sun.juwin.base.model;
+package sun.juwin.baseproject.database;
 
 /**
  *

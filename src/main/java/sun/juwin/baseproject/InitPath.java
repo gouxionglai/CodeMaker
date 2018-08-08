@@ -2,14 +2,15 @@
  * Bilibili.com Inc.
  * Copyright (c) 2009-2018 All Rights Reserved.
  */
-package sun.juwin.base.core;
+package sun.juwin.baseproject;
 
 import com.google.common.base.Strings;
-import sun.juwin.base.dao.Table;
-import sun.juwin.base.exception.BaseCodeMakerException;
-import sun.juwin.base.handlers.BaseHandler;
-import sun.juwin.base.model.TaskModel;
+import sun.juwin.core.CodeMaker;
+import sun.juwin.exception.BaseCodeMakerException;
+import sun.juwin.core.handlers.BaseHandler;
+import sun.juwin.baseproject.model.TaskModel;
 import sun.juwin.constant.CodeMakerConstant;
+import sun.juwin.baseproject.database.Table;
 
 import java.util.HashMap;
 import java.util.Map;

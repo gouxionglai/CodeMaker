@@ -4,9 +4,6 @@
 package sun.juwin.test;
 
 import org.junit.Test;
-import sun.juwin.base.handler.BaseHandler;
-import sun.juwin.base.model.JdbcModel;
-import sun.juwin.base.model.PathModel;
 
 /**
  *
@@ -25,33 +22,6 @@ public class CodeMakerTest {
     @Test
     public void test() throws Exception{
 
-        /***
-         * 以下定义好自己的数据库url、数据库用户名、数据库密码
-         */
-        JdbcModel.url = "jdbc:mysql://xxx.xx.xx.xxx:3306/数据库名";
-        JdbcModel.user = "xxxxx";
-        JdbcModel.pwd = "xxxxx";
-        JdbcModel.schema = "数据库名";
-
-        BaseHandler baseHandler = new BaseHandler();
-        /***
-         * 由于每个项目的命名规则不一致，因此各层级结构的路径允许自定义
-         * 可以不传某一分层的路径参数，若不传，则不会生成该层对应的代码
-         */
-        baseHandler.setPointPath(new PathModel()
-                .setControllerPath("sun.juwin.codemaker.controller")
-                .setServicePath("sun.juwin.codemaker.service")
-                .setServiceImplPath("sun.juwin.codemaker.service.impl")
-                .setDaoPath("sun.juwin.codemaker.dao")
-                .setMapperPath("sun.juwin.codemaker.dao")
-                .setModelPath("sun.juwin.codemaker.po"));
-        /***
-         * 执行生成文件的方法
-         * 参数1：最终生成文件所存放的项目路径，maven项目就是生成在main.java下面
-         * 参数2：数据库表名
-         * 参数3：该数据库表生成后期望的实体类命名
-         */
-        baseHandler.baseHandler("E:\\new_api\\Thread-Lock\\src\\main\\java", "r_record_season", "RecordSeason");
     }
 
 }
