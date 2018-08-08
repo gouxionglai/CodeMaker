@@ -8,7 +8,11 @@ package sun.juwin.base.core;
  * @author sunqinwen
  * @version \: CodePath.java,v 0.1 2018-08-07 18:19
  */
-public class CodePath {
+public class BaseCodePath {
+
+    private String tableName;
+
+    private String className;
 
     // 惯用类格式路径
     private String baseProPath;
@@ -34,11 +38,24 @@ public class CodePath {
 
     private String targetControllerPath;
 
+    // 文件名
+    private String targetModelName;
+
+    private String targetMapperName;
+
+    private String targetXmlName;
+
+    private String targetServiceName;
+
+    private String targetServiceImplName;
+
+    private String targetControllerName;
+
     public String getBaseProPath() {
         return baseProPath;
     }
 
-    public CodePath setBaseProPath(String baseProPath) {
+    public BaseCodePath setBaseProPath(String baseProPath) {
         this.baseProPath = baseProPath;
         return this;
     }
@@ -47,7 +64,7 @@ public class CodePath {
         return pointModelPath;
     }
 
-    public CodePath setPointModelPath(String pointModelPath) {
+    public BaseCodePath setPointModelPath(String pointModelPath) {
         this.pointModelPath = pointModelPath;
         targetModelPath = baseProPath + "/" + pointModelPath.replace(".", "/");
         return this;
@@ -57,7 +74,7 @@ public class CodePath {
         return pointMapperPath;
     }
 
-    public CodePath setPointMapperPath(String pointMapperPath) {
+    public BaseCodePath setPointMapperPath(String pointMapperPath) {
         this.pointMapperPath = pointMapperPath;
         targetMapperPath = baseProPath + "/" + pointMapperPath.replace(".", "/");
         return this;
@@ -67,7 +84,7 @@ public class CodePath {
         return pointServicePath;
     }
 
-    public CodePath setPointServicePath(String pointServicePath) {
+    public BaseCodePath setPointServicePath(String pointServicePath) {
         this.pointServicePath = pointServicePath;
         targetServicePath = baseProPath + "/" + pointServicePath.replace(".", "/");
         return this;
@@ -77,7 +94,7 @@ public class CodePath {
         return pointServiceImplPath;
     }
 
-    public CodePath setPointServiceImplPath(String pointServiceImplPath) {
+    public BaseCodePath setPointServiceImplPath(String pointServiceImplPath) {
         this.pointServiceImplPath = pointServiceImplPath;
         targetServiceImplPath = baseProPath + "/" + pointServiceImplPath.replace(".", "/");
         return this;
@@ -87,7 +104,7 @@ public class CodePath {
         return pointControllerPath;
     }
 
-    public CodePath setPointControllerPath(String pointControllerPath) {
+    public BaseCodePath setPointControllerPath(String pointControllerPath) {
         this.pointControllerPath = pointControllerPath;
         targetControllerPath = baseProPath + "/" + pointControllerPath.replace(".", "/");
         return this;
@@ -111,5 +128,45 @@ public class CodePath {
 
     public String getTargetControllerPath() {
         return targetControllerPath;
+    }
+
+    public String getTargetModelName() {
+        return String.format("%s.java", className);
+    }
+
+    public String getTargetMapperName() {
+        return String.format("%sMapper.java", className);
+    }
+
+    public String getTargetXmlName(){
+        return String.format("%sMapper.xml", className);
+    }
+
+    public String getTargetServiceName() {
+        return String.format("%sService.java", className);
+    }
+
+    public String getTargetServiceImplName() {
+        return String.format("%sServiceImpl.java", className);
+    }
+
+    public String getTargetControllerName() {
+        return String.format("%sController.java", className);
+    }
+
+    public String getTableName() {
+        return tableName;
+    }
+
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
     }
 }

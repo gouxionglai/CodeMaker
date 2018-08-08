@@ -16,15 +16,15 @@ import java.io.StringWriter;
  * @version \: ModelHandler.java,v 0.1 2018-08-07 17:44 
  *
  */
-public class ModelHandler extends CodeMakerHandler {
+public class BaseHandler extends CodeMakerHandler {
 
     @Override
-    public void makeCode(VelocityEngine ve, VelocityContext context, String targetPath, String fileName) throws Exception {
+    public void makeCode(VelocityEngine ve, VelocityContext context, String vmPath, String targetPath, String fileName) throws Exception {
         //引入model层模板
-        Template modelVm = ve.getTemplate("base/model.vm", "utf-8");
+        Template modelVm = ve.getTemplate(vmPath, "utf-8");
         StringWriter modelStr = new StringWriter();
         modelVm.merge(context, modelStr);
-        System.out.println(String.format("%s%s----------> 已生成！", targetPath, fileName));
+        System.out.println(String.format("%s----------> %s", fileName, targetPath));
         setContentToPath(targetPath, fileName, modelStr.toString());
     }
 }

@@ -10,14 +10,11 @@ import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
 import sun.juwin.base.dao.Table;
 import sun.juwin.base.exception.BaseCodeMakerException;
-import sun.juwin.base.handler.BaseHandler;
 import sun.juwin.base.handlers.*;
 import sun.juwin.base.model.TaskModel;
+import sun.juwin.constant.CodeMakerConstant;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 /**
  *
@@ -27,94 +24,74 @@ import java.util.Properties;
  */
 public class CodeMaker {
 
-    private static final String TEMPLATE_PATH = "CodeMaker/src/main/resources";
-
-    private static final String START_WORD = "file:/";
-
-    private static final String PRO_NAME = "CodeMaker";
-
     private VelocityEngine ve;
 
-    // 全局模板参数
+    private int handlerSize = 0;
+
     private VelocityContext context = new VelocityContext();
 
     private String tableName;
 
     private String modelName;
 
-    //路径
-    private CodePath codePath;
+    private BaseCodePath codePath;
+
+    private List<Map<String, Object>> filePath = new ArrayList<>();
 
     private List<CodeMakerHandler> handlers = new ArrayList<CodeMakerHandler>();
 
-    public CodeMaker buildMaker(CodePath codePath) throws BaseCodeMakerException{
+    public CodeMaker buildMaker(BaseCodePath codePath) throws BaseCodeMakerException{
 
         if(codePath == null || Strings.isNullOrEmpty(codePath.getBaseProPath())){
             throw new BaseCodeMakerException("您目标项目路径不可为空！");
         }
 
-        String path = BaseHandler.class.getResource("").toString();
-        //取得模板根目录
-        String temPath = path.substring(path.indexOf(START_WORD) + 6, path.indexOf(PRO_NAME)) + TEMPLATE_PATH;
-        //Velocity引擎及初始化相关
+        String path = sun.juwin.base.handler.BaseHandler.class.getResource("").toString();
+
+        String temPath = path.substring(path.indexOf(CodeMakerConstant.START_WORD)
+                + 6, path.indexOf(CodeMakerConstant.PRO_NAME))
+                + CodeMakerConstant.TEMPLATE_PATH;
+
         this.ve = new VelocityEngine();
         Properties p = new Properties();
         p.put(Velocity.FILE_RESOURCE_LOADER_PATH, temPath);
         ve.init(p);
-        // 初始化责任链
-        if(!Strings.isNullOrEmpty(codePath.getPointModelPath())){
-            handlers.add(new ModelHandler());
-        }
-        if(!Strings.isNullOrEmpty(codePath.getPointMapperPath())){
-            handlers.add(new MapperHandler());
-        }
-        if(!Strings.isNullOrEmpty(codePath.getPointServicePath())){
-            handlers.add(new ServiceHandler());
-        }
-        if(!Strings.isNullOrEmpty(codePath.getPointServiceImplPath())){
-            handlers.add(new ServiceImplHandler());
-        }
-        if(!Strings.isNullOrEmpty(codePath.getPointControllerPath())){
-            handlers.add(new ControllerHandler());
-        }
+
+        InitPath.initHandlers(codePath, this);
 
         return new CodeMaker();
     }
 
-    public CodeMaker setModelName(String tableName, String modelName) throws BaseCodeMakerException{
-
-        if(Strings.isNullOrEmpty(tableName) || Strings.isNullOrEmpty(modelName)) {
-            throw new BaseCodeMakerException("非常抱歉，表名和model类名都是必填项！");
-        }
-
-        Table table = new Table();
-        TaskModel model = table.getTaskModel(tableName);
-        if (model != null && model.getModels() != null && model.getModels().size() > 0) {
-            context.put("model", model);
-            context.put("className", modelName);
-            context.put("modelPath", codePath.getPointModelPath());
-            context.put("mapperPath", codePath.getPointMapperPath());
-            context.put("servicePath", codePath.getPointServicePath());
-            context.put("serviceImplPath", codePath.getPointServiceImplPath());
-            context.put("controllerPath", codePath.getPointControllerPath());
-            context.put("tableName", tableName);
-            context.put("lowerClassName", modelName.substring(0, 1).toLowerCase() + modelName.substring(1));
-        }else{
-            throw new BaseCodeMakerException("根据您给的数据库及库表，无法反射出可用属性！");
-        }
-
-        this.tableName = tableName;
-        this.modelName = modelName;
-
-        return this;
-    }
-
-    public void setHandlers(Map<String, String> vmParam, CodeMakerHandler handler){
+    public void setHandlers(Map<String, Object> vmParam, CodeMakerHandler handler) throws BaseCodeMakerException{
         if(handler != null){
             if(vmParam != null){
-                vmParam.forEach((k, v) -> context.put(k, v));
+                vmParam.forEach((k, v) -> {
+                    if(!CodeMakerConstant.TARGET_FILE_NAME.equals(k) &&
+                            !CodeMakerConstant.TARGET_FILE_PATH.equals(k) &&
+                            !CodeMakerConstant.TARGET_VM_PATH.equals(k)){
+                        context.put(k, v);
+                        vmParam.remove(k);
+                    }
+                });
+                if(vmParam.size() != 3){
+                    throw new BaseCodeMakerException("you must give me the target file name and target file path and target vm path all 3 params!");
+                }
                 handlers.add(handler);
+                filePath.add(vmParam);
+                handlerSize++;
             }
         }
+    }
+
+    public void make() throws Exception{
+        int cursor = getNextCursor();
+        handlers.get(cursor).makeCode(ve, context, "", "","");
+    }
+
+    private int getNextCursor() throws Exception {
+        if(handlers.size() == 0){
+            throw new Exception("no handlers");
+        }
+        return handlerSize++;
     }
 }

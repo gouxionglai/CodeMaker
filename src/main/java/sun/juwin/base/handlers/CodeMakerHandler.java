@@ -18,7 +18,7 @@ import java.io.FileOutputStream;
  */
 public abstract class CodeMakerHandler {
 
-    abstract void makeCode(VelocityEngine ve, VelocityContext context, String targetPath, String fileName) throws Exception;
+    public abstract void makeCode(VelocityEngine ve, VelocityContext context, String vmPath, String targetPath, String fileName) throws Exception;
 
     /**
      * 模板内容推送
