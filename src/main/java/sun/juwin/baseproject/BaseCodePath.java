@@ -154,15 +154,17 @@ public class BaseCodePath {
         return tableName;
     }
 
-    public void setTableName(String tableName) {
+    public BaseCodePath setTableName(String tableName) {
         this.tableName = tableName;
+        return this;
     }
 
     public String getClassName() {
         return className;
     }
 
-    public void setClassName(String className) {
+    public BaseCodePath setClassName(String className) {
         this.className = className;
+        return this;
     }
 }

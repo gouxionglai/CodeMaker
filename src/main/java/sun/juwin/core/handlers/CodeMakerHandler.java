@@ -6,6 +6,7 @@ package sun.juwin.core.handlers;
 
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
+import sun.juwin.core.CodeMaker;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,7 +19,7 @@ import java.io.FileOutputStream;
  */
 public abstract class CodeMakerHandler {
 
-    public abstract void makeCode(VelocityEngine ve, VelocityContext context, String vmPath, String targetPath, String fileName) throws Exception;
+    public abstract void makeCode(CodeMaker codeMaker) throws Exception;
 
     /**
      * 模板内容推送

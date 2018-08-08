@@ -7,6 +7,8 @@ package sun.juwin.core.handlers;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
+import sun.juwin.constant.CodeMakerConstant;
+import sun.juwin.core.CodeMaker;
 
 import java.io.StringWriter;
 
@@ -19,12 +21,19 @@ import java.io.StringWriter;
 public class BaseHandler extends CodeMakerHandler {
 
     @Override
-    public void makeCode(VelocityEngine ve, VelocityContext context, String vmPath, String targetPath, String fileName) throws Exception {
+    public void makeCode(CodeMaker codeMaker) throws Exception {
+        int cursor = codeMaker.getCursor() - 1;
+        if(codeMaker.getHandlerSize() > codeMaker.getCursor()){
+            codeMaker.getNextCodeMakerHandler().makeCode(codeMaker);
+        }
         //引入model层模板
-        Template modelVm = ve.getTemplate(vmPath, "utf-8");
+        Template modelVm = codeMaker.getVe().getTemplate(
+                String.valueOf(codeMaker.getFilePath().get(cursor).get(CodeMakerConstant.TARGET_VM_PATH)), "utf-8");
         StringWriter modelStr = new StringWriter();
-        modelVm.merge(context, modelStr);
-        System.out.println(String.format("%s----------> %s", fileName, targetPath));
+        modelVm.merge(codeMaker.getContext(), modelStr);
+        String targetPath = String.valueOf(codeMaker.getFilePath().get(cursor).get(CodeMakerConstant.TARGET_FILE_PATH));
+        String fileName = String.valueOf(codeMaker.getFilePath().get(cursor).get(CodeMakerConstant.TARGET_FILE_NAME));
+        System.out.println(String.format("%s ----------> %s", fileName, targetPath));
         setContentToPath(targetPath, fileName, modelStr.toString());
     }
 }

@@ -28,13 +28,21 @@ public class CodeMaker {
 
     private int handlerSize = 0;
 
+    private int cursor = 0;
+
     private VelocityContext context = new VelocityContext();
 
     private List<Map<String, Object>> filePath = new ArrayList<>();
 
     private List<CodeMakerHandler> handlers = new ArrayList<CodeMakerHandler>();
 
-    public CodeMaker buildBaseProjectMaker(BaseCodePath codePath) throws BaseCodeMakerException{
+    private CodeMaker(){}
+
+    public static CodeMaker buildMaker(){
+        return new CodeMaker();
+    }
+
+    public CodeMaker makeBaseProjectCode(BaseCodePath codePath) throws BaseCodeMakerException{
 
         if(codePath == null || Strings.isNullOrEmpty(codePath.getBaseProPath())){
             throw new BaseCodeMakerException("您目标项目路径不可为空！");
@@ -52,7 +60,7 @@ public class CodeMaker {
 
         InitPath.initHandlers(codePath, this);
 
-        return new CodeMaker();
+        return this;
     }
 
     public void setHandlers(Map<String, Object> vmParam, CodeMakerHandler handler) throws BaseCodeMakerException{
@@ -63,31 +71,44 @@ public class CodeMaker {
                             !CodeMakerConstant.TARGET_FILE_PATH.equals(k) &&
                             !CodeMakerConstant.TARGET_VM_PATH.equals(k)){
                         context.put(k, v);
-                        vmParam.remove(k);
                     }
                 });
-                if(vmParam.size() != 3){
-                    throw new BaseCodeMakerException("you must give me the target file name and target file path and target vm path all 3 params!");
-                }
                 handlers.add(handler);
                 filePath.add(vmParam);
-                handlerSize++;
+                handlerSize = handlers.size();
             }
         }
     }
 
     public void make() throws Exception{
-        int cursor = getNextCursor();
-        handlers.get(cursor).makeCode(ve, context,
-                String.valueOf(filePath.get(cursor).get(CodeMakerConstant.TARGET_VM_PATH)),
-                String.valueOf(filePath.get(cursor).get(CodeMakerConstant.TARGET_FILE_PATH)),
-                String.valueOf(filePath.get(cursor).get(CodeMakerConstant.TARGET_FILE_NAME)));
+        getNextCodeMakerHandler().makeCode(this);
     }
 
-    private int getNextCursor() throws Exception {
+    public CodeMakerHandler getNextCodeMakerHandler() throws BaseCodeMakerException{
         if(handlers.size() == 0){
-            throw new Exception("no handlers");
+            throw new BaseCodeMakerException("no handlers");
         }
-        return handlerSize++;
+        int p = cursor++;
+        return this.handlers.get(p);
+    }
+
+    public VelocityEngine getVe() {
+        return ve;
+    }
+
+    public int getHandlerSize() {
+        return handlerSize;
+    }
+
+    public VelocityContext getContext() {
+        return context;
+    }
+
+    public List<Map<String, Object>> getFilePath() {
+        return filePath;
+    }
+
+    public int getCursor() {
+        return cursor;
     }
 }

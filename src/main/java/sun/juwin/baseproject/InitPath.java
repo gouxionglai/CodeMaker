@@ -24,8 +24,9 @@ import java.util.Map;
 public class InitPath {
 
     public static void initHandlers(BaseCodePath codePath, CodeMaker codeMaker) throws BaseCodeMakerException{
-        Map<String, Object> mapParam = new HashMap<>();
+        Map<String, Object> mapParam;
         if(!Strings.isNullOrEmpty(codePath.getPointModelPath())){
+            mapParam = new HashMap<>();
             mapParam.put(CodeMakerConstant.TARGET_VM_PATH, "base/model.vm");
             mapParam.put(CodeMakerConstant.TARGET_FILE_PATH, codePath.getTargetModelPath());
             mapParam.put(CodeMakerConstant.TARGET_FILE_NAME, codePath.getTargetModelName());
@@ -47,12 +48,14 @@ public class InitPath {
         }
 
         if(!Strings.isNullOrEmpty(codePath.getPointMapperPath())){
+            mapParam = new HashMap<>();
             mapParam.put(CodeMakerConstant.TARGET_VM_PATH, "base/mapper.vm");
             mapParam.put(CodeMakerConstant.TARGET_FILE_PATH, codePath.getTargetMapperPath());
             mapParam.put(CodeMakerConstant.TARGET_FILE_NAME, codePath.getTargetMapperName());
             mapParam.put("mapperPath", codePath.getPointMapperPath());
             codeMaker.setHandlers(mapParam, new BaseHandler());
 
+            mapParam = new HashMap<>();
             mapParam.put(CodeMakerConstant.TARGET_VM_PATH, "base/mapper-xml.vm");
             mapParam.put(CodeMakerConstant.TARGET_FILE_PATH, codePath.getTargetMapperPath());
             mapParam.put(CodeMakerConstant.TARGET_FILE_NAME, codePath.getTargetXmlName());
@@ -60,6 +63,7 @@ public class InitPath {
             codeMaker.setHandlers(mapParam, new BaseHandler());
         }
         if(!Strings.isNullOrEmpty(codePath.getPointServicePath())){
+            mapParam = new HashMap<>();
             mapParam.put(CodeMakerConstant.TARGET_VM_PATH, "base/service.vm");
             mapParam.put(CodeMakerConstant.TARGET_FILE_PATH, codePath.getTargetServicePath());
             mapParam.put(CodeMakerConstant.TARGET_FILE_NAME, codePath.getTargetServiceName());
@@ -67,13 +71,15 @@ public class InitPath {
             codeMaker.setHandlers(mapParam, new BaseHandler());
         }
         if(!Strings.isNullOrEmpty(codePath.getPointServiceImplPath())){
-            mapParam.put(CodeMakerConstant.TARGET_VM_PATH, "base/service-xml.vm");
+            mapParam = new HashMap<>();
+            mapParam.put(CodeMakerConstant.TARGET_VM_PATH, "base/service-impl.vm");
             mapParam.put(CodeMakerConstant.TARGET_FILE_PATH, codePath.getTargetServiceImplPath());
             mapParam.put(CodeMakerConstant.TARGET_FILE_NAME, codePath.getTargetServiceImplName());
             mapParam.put("serviceImplPath", codePath.getPointServiceImplPath());
             codeMaker.setHandlers(mapParam, new BaseHandler());
         }
         if(!Strings.isNullOrEmpty(codePath.getPointControllerPath())){
+            mapParam = new HashMap<>();
             mapParam.put(CodeMakerConstant.TARGET_VM_PATH, "base/controller.vm");
             mapParam.put(CodeMakerConstant.TARGET_FILE_PATH, codePath.getTargetControllerPath());
             mapParam.put(CodeMakerConstant.TARGET_FILE_NAME, codePath.getTargetControllerName());
