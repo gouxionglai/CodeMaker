@@ -22,7 +22,6 @@ public class BaseHandler extends CodeMakerHandler {
         if (codeMaker.getHandlerSize() > codeMaker.getCursor()) {
             codeMaker.getNextCodeMakerHandler().makeCode(codeMaker);
         }
-        //引入model层模板
         Template modelVm = codeMaker.getVe().getTemplate(
                 String.valueOf(codeMaker.getFilePath().get(cursor).get(CodeMakerConstant.TARGET_VM_PATH)), "utf-8");
         StringWriter modelStr = new StringWriter();
