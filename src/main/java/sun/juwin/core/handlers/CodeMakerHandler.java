@@ -20,7 +20,7 @@ public abstract class CodeMakerHandler {
     /**
      * 模板内容推送
      */
-    public void setContentToPath(String dirPath, String fileName, String str) throws Exception {
+    void setContentToPath(String dirPath, String fileName, String str) throws Exception {
         File file = new File(dirPath);
         if (!file.exists()) {
             file.mkdirs();
