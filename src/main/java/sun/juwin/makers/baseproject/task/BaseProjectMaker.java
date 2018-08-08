@@ -4,7 +4,6 @@
  */
 package sun.juwin.makers.baseproject.task;
 
-import com.google.common.base.Strings;
 import sun.juwin.makers.baseproject.model.BaseCodePath;
 import sun.juwin.core.CodeMaker;
 import sun.juwin.exception.BaseCodeMakerException;
@@ -23,6 +22,9 @@ public class BaseProjectMaker {
     }
 
     public CodeMaker makeBaseProjectCode(BaseCodePath codePath, String basePath) throws BaseCodeMakerException {
+        if (codePath == null) {
+            throw new BaseCodeMakerException("base code path can not be null !");
+        }
         codePath.setPointModelPath(String.format("%s.model", basePath))
                 .setPointMapperPath(String.format("%s.mapper", basePath))
                 .setPointServicePath(String.format("%s.service", basePath))
@@ -32,8 +34,11 @@ public class BaseProjectMaker {
     }
 
     public CodeMaker makeBaseProjectCode(BaseCodePath codePath) throws BaseCodeMakerException {
-        if (codePath == null || Strings.isNullOrEmpty(codePath.getBaseProPath())) {
-            throw new BaseCodeMakerException("您目标项目路径不可为空！");
+        if (codePath == null) {
+            throw new BaseCodeMakerException("base code path can not be null !");
+        }
+        if (!codePath.check()) {
+            throw new BaseCodeMakerException("table_name, class_name, base_pro_path can not be null !");
         }
         CodeMaker codeMaker = CodeMaker.buildMaker();
         InitHandlers.initHandlers(codePath, codeMaker);

@@ -4,6 +4,8 @@
  */
 package sun.juwin.makers.baseproject.model;
 
+import com.google.common.base.Strings;
+import sun.juwin.exception.BaseCodeMakerException;
 import sun.juwin.makers.baseproject.database.JdbcModel;
 
 /**
@@ -40,7 +42,19 @@ public class BaseCodePath {
 
     private String targetControllerPath;
 
-    public BaseCodePath(String mysqlUrl, String mysqlUser, String mysqlPwd, String schema) {
+    public boolean check() {
+        return Strings.isNullOrEmpty(tableName) ||
+                Strings.isNullOrEmpty(className) ||
+                Strings.isNullOrEmpty(baseProPath);
+    }
+
+    public BaseCodePath(String mysqlUrl, String mysqlUser, String mysqlPwd, String schema) throws BaseCodeMakerException {
+        if (Strings.isNullOrEmpty(mysqlUrl)
+                || Strings.isNullOrEmpty(mysqlUser)
+                || Strings.isNullOrEmpty(mysqlPwd)
+                || Strings.isNullOrEmpty(schema)) {
+            throw new BaseCodeMakerException("mysql 4 params can not be null!");
+        }
         JdbcModel.url = mysqlUrl;
         JdbcModel.user = mysqlUser;
         JdbcModel.pwd = mysqlPwd;
