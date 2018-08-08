@@ -13,17 +13,15 @@ import sun.juwin.core.CodeMaker;
 import java.io.StringWriter;
 
 /**
- *
  * @author sunqinwen
- * @version \: ModelHandler.java,v 0.1 2018-08-07 17:44 
- *
+ * @version \: ModelHandler.java,v 0.1 2018-08-07 17:44
  */
 public class BaseHandler extends CodeMakerHandler {
 
     @Override
     public void makeCode(CodeMaker codeMaker) throws Exception {
         int cursor = codeMaker.getCursor() - 1;
-        if(codeMaker.getHandlerSize() > codeMaker.getCursor()){
+        if (codeMaker.getHandlerSize() > codeMaker.getCursor()) {
             codeMaker.getNextCodeMakerHandler().makeCode(codeMaker);
         }
         //引入model层模板

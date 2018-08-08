@@ -5,10 +5,8 @@
 package sun.juwin.constant;
 
 /**
- *
  * @author sunqinwen
- * @version \: CodeMakerConstant.java,v 0.1 2018-08-08 11:18 
- *
+ * @version \: CodeMakerConstant.java,v 0.1 2018-08-08 11:18
  */
 public class CodeMakerConstant {
 

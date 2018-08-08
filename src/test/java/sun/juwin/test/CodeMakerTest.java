@@ -8,14 +8,13 @@ import sun.juwin.baseproject.BaseCodePath;
 import sun.juwin.core.CodeMaker;
 
 /**
- *
  * @author Juwin.S
  * @version \: Test.java,v 0.1 2018-02-09 18:13
  */
 public class CodeMakerTest {
 
     @Test
-    public void test() throws Exception{
+    public void test() throws Exception {
         BaseCodePath codePath = new BaseCodePath(
                 "jdbc:mysql://127.0.0.1:3306/dogvane?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&autoReconnect=true&zeroDateTimeBehavior=convertToNull",
                 "dogvane",

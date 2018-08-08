@@ -7,9 +7,8 @@ import java.util.List;
 import java.util.Set;
 
 /**
- *
  * @author Juwin.S
- * @version \: TaskModel.java,v 0.1 2017-03-02 11:13 
+ * @version \: TaskModel.java,v 0.1 2017-03-02 11:13
  * 最终参与业务处理的实体类
  */
 public class TaskModel {

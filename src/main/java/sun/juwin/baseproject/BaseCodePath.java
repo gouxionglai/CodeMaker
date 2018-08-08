@@ -134,7 +134,7 @@ public class BaseCodePath {
         return String.format("%sMapper.java", className);
     }
 
-    public String getTargetXmlName(){
+    public String getTargetXmlName() {
         return String.format("%sMapper.xml", className);
     }
 

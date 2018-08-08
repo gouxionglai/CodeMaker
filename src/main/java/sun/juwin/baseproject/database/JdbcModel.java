@@ -1,10 +1,8 @@
 package sun.juwin.baseproject.database;
 
 /**
- *
  * @author Juwin.S
- * @version \: JdbcModel.java,v 0.1 2018-02-23 14:45 
- *
+ * @version \: JdbcModel.java,v 0.1 2018-02-23 14:45
  */
 public class JdbcModel {
 

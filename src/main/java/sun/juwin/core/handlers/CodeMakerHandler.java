@@ -12,10 +12,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 
 /**
- *
  * @author sunqinwen
- * @version \: Handler.java,v 0.1 2018-08-07 17:45 
- *
+ * @version \: Handler.java,v 0.1 2018-08-07 17:45
  */
 public abstract class CodeMakerHandler {
 

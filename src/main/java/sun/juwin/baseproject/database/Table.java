@@ -12,10 +12,8 @@ import sun.juwin.baseproject.model.TableModel;
 import sun.juwin.baseproject.model.TaskModel;
 
 /**
- *
  * @author Juwin.S
- * @version \: getTable.java,v 0.1 2017-03-01 19:06 
- *
+ * @version \: getTable.java,v 0.1 2017-03-01 19:06
  */
 public class Table {
 
@@ -49,19 +47,20 @@ public class Table {
 
     /**
      * 用来获取对应数据库表的类型、字段名
+     *
      * @return
      */
-    public List<TableModel> getAllProperty(String tableName) throws Exception{
+    public List<TableModel> getAllProperty(String tableName) throws Exception {
         List<TableModel> tableModels = new ArrayList<TableModel>();
         Statement statement = conn.createStatement();
-        ResultSet resultSet = statement.executeQuery("select `column_name`, data_type, column_comment from information_schema.columns where `table_name` = '"+tableName+"' AND TABLE_SCHEMA = '"+JdbcModel.schema +"'");
-        while (resultSet.next()){
+        ResultSet resultSet = statement.executeQuery("select `column_name`, data_type, column_comment from information_schema.columns where `table_name` = '" + tableName + "' AND TABLE_SCHEMA = '" + JdbcModel.schema + "'");
+        while (resultSet.next()) {
             TableModel tableModel = new TableModel();
             String pro = resultSet.getString("column_name");
             String type = resultSet.getString("data_type");
             String note = resultSet.getString("column_comment");
             String javaType = mysqlJavaTypeMap.get(type);
-            if(javaType == null){
+            if (javaType == null) {
                 System.out.println("程序终止-存在无法映射的mysql类型！");
                 return null;
             }
@@ -76,20 +75,20 @@ public class Table {
         return tableModels;
     }
 
-    public TaskModel getTaskModel(String tableName){
-        try{
+    public TaskModel getTaskModel(String tableName) {
+        try {
             TaskModel taskModel = new TaskModel();
             List<TableModel> models = this.getAllProperty(tableName);
             taskModel.setModels(models);
             Set<String> packages = new HashSet<String>();
-            for(TableModel model : models){
-                if(model.getImportPackages() != null){
+            for (TableModel model : models) {
+                if (model.getImportPackages() != null) {
                     packages.add(model.getImportPackages());
                 }
             }
             taskModel.setPackages(packages);
             return taskModel;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("生成对象过程中出现迷之错误，请定位问题~");
             return null;

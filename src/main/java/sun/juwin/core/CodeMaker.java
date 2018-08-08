@@ -17,10 +17,8 @@ import sun.juwin.constant.CodeMakerConstant;
 import java.util.*;
 
 /**
- *
  * @author sunqinwen
- * @version \: CodeMaker.java,v 0.1 2018-08-07 17:51 
- *
+ * @version \: CodeMaker.java,v 0.1 2018-08-07 17:51
  */
 public class CodeMaker {
 
@@ -36,15 +34,16 @@ public class CodeMaker {
 
     private List<CodeMakerHandler> handlers = new ArrayList<CodeMakerHandler>();
 
-    private CodeMaker(){}
+    private CodeMaker() {
+    }
 
-    public static CodeMaker buildMaker(){
+    public static CodeMaker buildMaker() {
         return new CodeMaker();
     }
 
-    public CodeMaker makeBaseProjectCode(BaseCodePath codePath) throws BaseCodeMakerException{
+    public CodeMaker makeBaseProjectCode(BaseCodePath codePath) throws BaseCodeMakerException {
 
-        if(codePath == null || Strings.isNullOrEmpty(codePath.getBaseProPath())){
+        if (codePath == null || Strings.isNullOrEmpty(codePath.getBaseProPath())) {
             throw new BaseCodeMakerException("您目标项目路径不可为空！");
         }
 
@@ -63,13 +62,13 @@ public class CodeMaker {
         return this;
     }
 
-    public void setHandlers(Map<String, Object> vmParam, CodeMakerHandler handler) throws BaseCodeMakerException{
-        if(handler != null){
-            if(vmParam != null){
+    public void setHandlers(Map<String, Object> vmParam, CodeMakerHandler handler) throws BaseCodeMakerException {
+        if (handler != null) {
+            if (vmParam != null) {
                 vmParam.forEach((k, v) -> {
-                    if(!CodeMakerConstant.TARGET_FILE_NAME.equals(k) &&
+                    if (!CodeMakerConstant.TARGET_FILE_NAME.equals(k) &&
                             !CodeMakerConstant.TARGET_FILE_PATH.equals(k) &&
-                            !CodeMakerConstant.TARGET_VM_PATH.equals(k)){
+                            !CodeMakerConstant.TARGET_VM_PATH.equals(k)) {
                         context.put(k, v);
                     }
                 });
@@ -80,12 +79,12 @@ public class CodeMaker {
         }
     }
 
-    public void make() throws Exception{
+    public void make() throws Exception {
         getNextCodeMakerHandler().makeCode(this);
     }
 
-    public CodeMakerHandler getNextCodeMakerHandler() throws BaseCodeMakerException{
-        if(handlers.size() == 0){
+    public CodeMakerHandler getNextCodeMakerHandler() throws BaseCodeMakerException {
+        if (handlers.size() == 0) {
             throw new BaseCodeMakerException("no handlers");
         }
         int p = cursor++;

@@ -16,16 +16,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
  * @author sunqinwen
- * @version \: InitPath.java,v 0.1 2018-08-08 12:59 
- *
+ * @version \: InitPath.java,v 0.1 2018-08-08 12:59
  */
 public class InitHandlers {
 
-    public static void initHandlers(BaseCodePath codePath, CodeMaker codeMaker) throws BaseCodeMakerException{
+    public static void initHandlers(BaseCodePath codePath, CodeMaker codeMaker) throws BaseCodeMakerException {
         Map<String, Object> mapParam;
-        if(!Strings.isNullOrEmpty(codePath.getPointModelPath())){
+        if (!Strings.isNullOrEmpty(codePath.getPointModelPath())) {
             mapParam = new HashMap<>();
             mapParam.put(CodeMakerConstant.TARGET_VM_PATH, "base/model.vm");
             mapParam.put(CodeMakerConstant.TARGET_FILE_PATH, codePath.getTargetModelPath());
@@ -39,15 +37,15 @@ public class InitHandlers {
                 mapParam.put("tableName", codePath.getTableName());
                 mapParam.put("lowerClassName", codePath.getClassName().substring(0, 1).toLowerCase()
                         + codePath.getClassName().substring(1));
-            }else{
+            } else {
                 throw new BaseCodeMakerException("根据您给的数据库及库表，无法反射出可用属性！");
             }
             codeMaker.setHandlers(mapParam, new BaseHandler());
-        }else{
+        } else {
             throw new BaseCodeMakerException("model层为基础层，必须要有！");
         }
 
-        if(!Strings.isNullOrEmpty(codePath.getPointMapperPath())){
+        if (!Strings.isNullOrEmpty(codePath.getPointMapperPath())) {
             mapParam = new HashMap<>();
             mapParam.put(CodeMakerConstant.TARGET_VM_PATH, "base/mapper.vm");
             mapParam.put(CodeMakerConstant.TARGET_FILE_PATH, codePath.getTargetMapperPath());
@@ -62,7 +60,7 @@ public class InitHandlers {
             mapParam.put("mapperPath", codePath.getPointMapperPath());
             codeMaker.setHandlers(mapParam, new BaseHandler());
         }
-        if(!Strings.isNullOrEmpty(codePath.getPointServicePath())){
+        if (!Strings.isNullOrEmpty(codePath.getPointServicePath())) {
             mapParam = new HashMap<>();
             mapParam.put(CodeMakerConstant.TARGET_VM_PATH, "base/service.vm");
             mapParam.put(CodeMakerConstant.TARGET_FILE_PATH, codePath.getTargetServicePath());
@@ -70,7 +68,7 @@ public class InitHandlers {
             mapParam.put("servicePath", codePath.getPointServicePath());
             codeMaker.setHandlers(mapParam, new BaseHandler());
         }
-        if(!Strings.isNullOrEmpty(codePath.getPointServiceImplPath())){
+        if (!Strings.isNullOrEmpty(codePath.getPointServiceImplPath())) {
             mapParam = new HashMap<>();
             mapParam.put(CodeMakerConstant.TARGET_VM_PATH, "base/service-impl.vm");
             mapParam.put(CodeMakerConstant.TARGET_FILE_PATH, codePath.getTargetServiceImplPath());
@@ -78,7 +76,7 @@ public class InitHandlers {
             mapParam.put("serviceImplPath", codePath.getPointServiceImplPath());
             codeMaker.setHandlers(mapParam, new BaseHandler());
         }
-        if(!Strings.isNullOrEmpty(codePath.getPointControllerPath())){
+        if (!Strings.isNullOrEmpty(codePath.getPointControllerPath())) {
             mapParam = new HashMap<>();
             mapParam.put(CodeMakerConstant.TARGET_VM_PATH, "base/controller.vm");
             mapParam.put(CodeMakerConstant.TARGET_FILE_PATH, codePath.getTargetControllerPath());

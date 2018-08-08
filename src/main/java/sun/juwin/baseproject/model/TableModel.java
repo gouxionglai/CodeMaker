@@ -4,9 +4,8 @@
 package sun.juwin.baseproject.model;
 
 /**
- *
  * @author Juwin.S
- * @version \: TableModel.java,v 0.1 2017-03-02 10:14 
+ * @version \: TableModel.java,v 0.1 2017-03-02 10:14
  * 用来存放数据库表最基本的元素
  */
 public class TableModel {
