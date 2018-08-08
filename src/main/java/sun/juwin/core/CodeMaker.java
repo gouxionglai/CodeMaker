@@ -41,6 +41,15 @@ public class CodeMaker {
         return new CodeMaker();
     }
 
+    public CodeMaker makeBaseProjectCode(BaseCodePath codePath, String basePath) throws BaseCodeMakerException {
+        codePath.setPointModelPath(String.format("%s.model", basePath))
+                .setPointMapperPath(String.format("%s.mapper", basePath))
+                .setPointServicePath(String.format("%s.service", basePath))
+                .setPointServiceImplPath(String.format("%s.service.impl", basePath))
+                .setPointControllerPath(String.format("%s.controller", basePath));
+        return makeBaseProjectCode(codePath);
+    }
+
     public CodeMaker makeBaseProjectCode(BaseCodePath codePath) throws BaseCodeMakerException {
 
         if (codePath == null || Strings.isNullOrEmpty(codePath.getBaseProPath())) {
