@@ -45,7 +45,11 @@ public class CodeMaker {
         return new CodeMaker();
     }
 
-    public void setHandlers(Map<String, Object> vmParam, CodeMakerHandler handler) throws BaseCodeMakerException {
+    public void setHandlers(Map<String, Object> vmParam){
+        setHandlers(vmParam, new BaseHandler());
+    }
+
+    public void setHandlers(Map<String, Object> vmParam, CodeMakerHandler handler) {
         if (handler != null) {
             if (vmParam != null) {
                 vmParam.forEach((k, v) -> {
