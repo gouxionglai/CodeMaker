@@ -5,8 +5,6 @@
 package sun.juwin.core.handlers;
 
 import org.apache.velocity.Template;
-import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.VelocityEngine;
 import sun.juwin.constant.CodeMakerConstant;
 import sun.juwin.core.CodeMaker;
 
