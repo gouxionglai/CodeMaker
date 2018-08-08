@@ -4,8 +4,6 @@
  */
 package sun.juwin.core.handlers;
 
-import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.VelocityEngine;
 import sun.juwin.core.CodeMaker;
 
 import java.io.File;
