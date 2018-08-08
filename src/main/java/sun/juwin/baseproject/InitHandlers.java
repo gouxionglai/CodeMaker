@@ -21,7 +21,7 @@ import java.util.Map;
  * @version \: InitPath.java,v 0.1 2018-08-08 12:59 
  *
  */
-public class InitPath {
+public class InitHandlers {
 
     public static void initHandlers(BaseCodePath codePath, CodeMaker codeMaker) throws BaseCodeMakerException{
         Map<String, Object> mapParam;

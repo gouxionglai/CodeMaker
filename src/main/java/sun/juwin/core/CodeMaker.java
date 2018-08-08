@@ -9,7 +9,7 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
 import sun.juwin.baseproject.BaseCodePath;
-import sun.juwin.baseproject.InitPath;
+import sun.juwin.baseproject.InitHandlers;
 import sun.juwin.exception.BaseCodeMakerException;
 import sun.juwin.core.handlers.*;
 import sun.juwin.constant.CodeMakerConstant;
@@ -58,7 +58,7 @@ public class CodeMaker {
         p.put(Velocity.FILE_RESOURCE_LOADER_PATH, temPath);
         ve.init(p);
 
-        InitPath.initHandlers(codePath, this);
+        InitHandlers.initHandlers(codePath, this);
 
         return this;
     }
