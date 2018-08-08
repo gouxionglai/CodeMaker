@@ -28,7 +28,7 @@ public abstract class CodeMakerHandler {
         if (!file.exists()) {
             file.mkdirs();
         }
-        FileOutputStream of = new FileOutputStream(dirPath + "/" + fileName);
+        FileOutputStream of = new FileOutputStream(String.format("%s/%s", dirPath, fileName));
         of.write(str.getBytes("UTF-8"));
         of.flush();
         of.close();
