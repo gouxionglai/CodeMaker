@@ -1,2 +1,2 @@
 # CodeMaker
-详情见wiki ---------> https://github.com/sunqinwen/CodeMaker/wiki/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E
+仅能生成SSM项目的controller、service、dao（mapper和xml）、po层基本增删改查，特别局限，用法待更新
