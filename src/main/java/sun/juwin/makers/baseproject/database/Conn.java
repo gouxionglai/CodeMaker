@@ -23,6 +23,7 @@ public class Conn {
             synchronized (Conn.class) {
                 if (connection == null) {
                     try {
+                        Class.forName("com.mysql.jdbc.Driver");
                         Connection realConn = DriverManager.getConnection(JdbcModel.url, JdbcModel.user, JdbcModel.pwd);
                         conn.set(realConn);
                     } catch (Exception e) {

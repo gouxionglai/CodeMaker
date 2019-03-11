@@ -37,7 +37,7 @@ public class BaseProjectMaker {
         if (codePath == null) {
             throw new BaseCodeMakerException("base code path can not be null !");
         }
-        if (!codePath.check()) {
+        if (codePath.check()) {
             throw new BaseCodeMakerException("table_name, class_name, base_pro_path can not be null !");
         }
         CodeMaker codeMaker = CodeMaker.buildMaker();
