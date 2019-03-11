@@ -47,7 +47,104 @@ PRIMARY KEY (`id`)
 
 ### 运行效果
 ##### model层代码：
-![blockchain](https://raw.githubusercontent.com/exceting/CodeMaker/master/src/main/resources/readme/2.jpg "model层代码")
+```java
+/**
+* Copyright (c) 2009-2017 All Rights Reserved.
+*/
+package sun.juwin.newcode.model;
+
+import java.time.LocalDateTime;
+
+/**
+* @author CodeMaker
+* @version $Id: Student.java,v 0.1 2017-02-13 下午5:55
+*          CodeMaker Exp $$
+*/
+public class Student {
+
+    /** 主键id*/
+    private Integer id;
+    /** 名字*/
+    private String name;
+    /** 性别：1男，0女*/
+    private Integer sex;
+    /** 联系地址*/
+    private String address;
+    /** 邮箱*/
+    private String email;
+    /** 年龄*/
+    private Integer age;
+    /** 添加时间*/
+    private LocalDateTime ctime;
+    /** 更新时间*/
+    private LocalDateTime mtime;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public LocalDateTime getCtime() {
+        return ctime;
+    }
+
+    public void setCtime(LocalDateTime ctime) {
+        this.ctime = ctime;
+    }
+
+    public LocalDateTime getMtime() {
+        return mtime;
+    }
+
+    public void setMtime(LocalDateTime mtime) {
+        this.mtime = mtime;
+    }
+
+}
+```
 会发现，建表语句里的注释成了代码里字段的注释，命名、类型也对应上了。
 ##### 持久层代码：
 mapper接口：
