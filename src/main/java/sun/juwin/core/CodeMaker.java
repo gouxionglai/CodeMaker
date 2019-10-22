@@ -32,9 +32,8 @@ public class CodeMaker {
     private List<CodeMakerHandler> handlers = new ArrayList<CodeMakerHandler>();
 
     private CodeMaker() {
-        String path = CodeMaker.class.getResource("").toString();
-        String temPath = path.substring(path.indexOf(CodeMakerConstant.START_WORD) + 6,
-                path.indexOf(CodeMakerConstant.PRO_NAME)) + CodeMakerConstant.TEMPLATE_PATH;
+        String path = CodeMaker.class.getResource("").getPath();
+        String temPath = path.substring(0, path.indexOf(CodeMakerConstant.PRO_NAME)) + CodeMakerConstant.TEMPLATE_PATH;
         this.ve = new VelocityEngine();
         Properties p = new Properties();
         p.put(Velocity.FILE_RESOURCE_LOADER_PATH, temPath);
